@@ -90,10 +90,15 @@ export function CreateBillingScreen({
     <ScrollView height="full" bg={isDark ? 'coolGray.800' : 'warmGray.50'}>
       <Center height="full">
         <Container alignItems="center">
-          <Heading mx="auto" fontSize="2xl" marginBottom="1">
+          <Heading
+            mx="auto"
+            fontSize="2xl"
+            marginBottom="1"
+            color={isDark ? 'primary.50' : 'coolGray.800'}>
             Cliente
           </Heading>
           <Input
+            color={isDark ? 'primary.50' : 'coolGray.800'}
             marginBottom="2"
             width="100%"
             placeholder="Nome"
@@ -101,6 +106,7 @@ export function CreateBillingScreen({
             value={String(name)}
           />
           <Input
+            color={isDark ? 'primary.50' : 'coolGray.800'}
             marginBottom="2"
             width="100%"
             placeholder="Telefone"
@@ -109,6 +115,7 @@ export function CreateBillingScreen({
             value={String(phone)}
           />
           <Input
+            color={isDark ? 'primary.50' : 'coolGray.800'}
             width="100%"
             marginBottom="2"
             placeholder="Dia do serviço"
@@ -118,6 +125,7 @@ export function CreateBillingScreen({
           />
           <Input
             width="100%"
+            color={isDark ? 'primary.50' : 'coolGray.800'}
             placeholder="Preço"
             marginBottom="2"
             keyboardType="numeric"
@@ -127,6 +135,7 @@ export function CreateBillingScreen({
           <Input
             width="100%"
             marginBottom="2"
+            color={isDark ? 'primary.50' : 'coolGray.800'}
             placeholder="Longitude"
             keyboardType="numeric"
             onChangeText={(value: string) => setLongitude(Number(value))}
@@ -134,6 +143,7 @@ export function CreateBillingScreen({
           />
           <Input
             width="100%"
+            color={isDark ? 'primary.50' : 'coolGray.800'}
             placeholder="Latitude"
             marginBottom="2"
             keyboardType="numeric"
