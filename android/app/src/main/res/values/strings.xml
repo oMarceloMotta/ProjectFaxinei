@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Faxinei</string>
+    <string moduleConfig="true" name="CodePushDeploymentKey">5DaLP1uk8gr_wv-PUR4Ch_t_9OvdIBd7N1b56</string>
 </resources>

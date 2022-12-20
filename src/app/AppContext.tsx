@@ -10,6 +10,7 @@ export const initialAppState: AppState = {
       longitude: 0,
     },
   },
+  dark: false,
 };
 
 export const AppContext = createContext({

@@ -1,41 +1,26 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
-import { MapContainer } from './styles';
+import React, { useEffect, useRef } from 'react';
+import { Container } from 'native-base';
 import MapView, { MapMarker, Marker } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
 import { Alert, Dimensions, StyleSheet } from 'react-native';
-import { AppContext } from '../../app/AppContext';
-
-import screens from '../../screens.json';
-import billingscreens from '../billing/billingscreen.json';
 
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { ParamListBase, useFocusEffect } from '@react-navigation/native';
-import { ClientState } from '../../types';
-import { ClientStorage } from '../../app/ClientStorage';
+import { ParamListBase } from '@react-navigation/native';
+import { useAppSelector } from '../../app/appStore';
+import mapStyleDark from './mapStyleDark.json';
+import mapStyleLight from './mapStyleLight.json';
+
 const delta = 0.003;
 const markerAnimationDuration = 1000;
 const markerSize = 42;
+
 export function MapsScreen({
   route,
   navigation,
 }: BottomTabScreenProps<ParamListBase>) {
-  let {
-    appState: { user },
-  } = useContext(AppContext);
-  const [data, setData] = useState<Array<ClientState>>([]);
-
-  async function fetchData() {
-    const clients: Array<ClientState> = await ClientStorage.getStorage();
-    setData(clients);
-  }
-  useEffect(() => {
-    fetchData();
-  });
+  const isDarkMap = useAppSelector(state => state.app.isDarkTheme);
+  const data = useAppSelector(state => state.clients.clients);
+  const user = useAppSelector(state => state.app.user);
+  useEffect(() => {});
 
   const markersRef = useRef({} as { [key: string]: MapMarker | undefined });
   function onPress(item) {
@@ -44,7 +29,7 @@ export function MapsScreen({
     ]);
   }
   return (
-    <MapContainer>
+    <Container width="full" height="full">
       <MapView
         showsUserLocation
         showsBuildings={false}
@@ -53,6 +38,7 @@ export function MapsScreen({
         showsCompass={false}
         toolbarEnabled={false}
         style={styles.map}
+        customMapStyle={isDarkMap ? mapStyleDark : mapStyleLight}
         region={{
           ...user.coords,
           latitudeDelta: delta,
@@ -76,7 +62,7 @@ export function MapsScreen({
             ),
         )}
       </MapView>
-    </MapContainer>
+    </Container>
   );
 }
 const styles = StyleSheet.create({

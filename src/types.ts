@@ -12,8 +12,8 @@ export type ClientState = {
 };
 
 export type Coords = {
-  latitude: string;
-  longitude: string;
+  latitude: number;
+  longitude: number;
 };
 
 export type ClientPositions = { [key: string]: ClientPositions };
@@ -21,4 +21,17 @@ export type ClientPositions = { [key: string]: ClientPositions };
 export type AppState = {
   isLoading: boolean;
   user: UserState;
+  dark: boolean;
+};
+
+export type FeedState = {
+  imageSrc: string;
+  content: string;
+  title: string;
+};
+
+export type FeedCardProps = {
+  imageSrc: string;
+  title: string;
+  content: string;
 };

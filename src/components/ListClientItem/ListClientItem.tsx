@@ -1,29 +1,27 @@
 import React from 'react';
-import {
-  Container,
-  ContainerDescription,
-  ContainerTitle,
-  DateText,
-  Description,
-  Title,
-  PressButton,
-} from './styles';
+
+import { Pressable, Box, Text, Flex } from 'native-base';
+import { useAppSelector } from '../../app/appStore';
 
 export function ListClientItem({ item, onPress }: any) {
+  const isDark = useAppSelector(state => state.app.isDarkTheme);
+
   function onPressClient() {
     onPress(item);
   }
   return (
-    <PressButton onPress={onPressClient}>
-      <Container>
-        <ContainerTitle>
-          <Title>{item.name}</Title>
-          <DateText>{item.phone}</DateText>
-        </ContainerTitle>
-        <ContainerDescription>
-          <Description>{item.dateWorked}</Description>
-        </ContainerDescription>
-      </Container>
-    </PressButton>
+    <Pressable onPress={onPressClient}>
+      <Flex direction="row" alignItems="center">
+        <Box w="70%" marginTop="2">
+          <Text color={isDark ? 'primary.50' : 'muted.900'}>{item.name}</Text>
+          <Text color={isDark ? 'primary.50' : 'muted.900'}>{item.phone}</Text>
+        </Box>
+        <Box>
+          <Text color={isDark ? 'primary.50' : 'muted.900'}>
+            {item.dateWorked}
+          </Text>
+        </Box>
+      </Flex>
+    </Pressable>
   );
 }

@@ -4,6 +4,8 @@ import screens from '../screens.json';
 import Icon from 'react-native-vector-icons/Ionicons';
 import React from 'react';
 import { ClientScreen } from '../screens/billing/ClientScreen';
+import { FeedScreen } from '../screens/feed/FeedScreen';
+
 const Tab = createBottomTabNavigator();
 export default function AppNavigator() {
   return (
@@ -28,6 +30,15 @@ export default function AppNavigator() {
         options={{
           tabBarIcon({ color, size }) {
             return <Icon name="person" size={size} color={color} />;
+          },
+        }}
+      />
+      <Tab.Screen
+        name={screens.feed}
+        component={FeedScreen}
+        options={{
+          tabBarIcon({ color, size }) {
+            return <Icon name="newspaper-outline" size={size} color={color} />;
           },
         }}
       />
